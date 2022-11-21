@@ -3,6 +3,9 @@ var buddyboy;
 var counter=0;
 var sum=0;
 var sumtext;
+//For people who read it, really sorry, didn't have enought time.
+//Code is a mess, but at least working
+//Again. Very sorry
 window.onload = function() {
     var buddy = document.querySelector("body");
     buddyboy=buddy;
@@ -232,7 +235,7 @@ function updateSum()
 
 
 function dragstart_handler(ev) {
-    // Add the target element's id to the data transfer object
+
     ev.dataTransfer.setData("application/my-app", ev.target.id);
     ev.dataTransfer.dropEffect = "copy";
   }
@@ -243,8 +246,7 @@ function dragstart_handler(ev) {
   }
   function drop_handler(ev) {
     ev.preventDefault();
-    // Get the id of the target and add the moved element to the target's DOM
+
     onAddToBagClicked(ev.dataTransfer.getData("application/my-app"));
-    // const data = ev.dataTransfer.getData("text/plain");
-    // ev.target.appendChild(document.getElementById(data));
+
   }
