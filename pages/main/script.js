@@ -212,9 +212,10 @@ function updateSum()
     {
         var tmp = prices[edr].textContent;
         console.log(tmp);
-
-        // summa+=parseInt(tmp.replace("$",""));
+        if (tmp==undefined)
+         continue;
+        summa+=parseInt(tmp.replace("$",""));
     }
-    sumtext.textContent(summa+" $");
+    sumtext.textContent = summa+" $";
 
 }
