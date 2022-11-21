@@ -1,6 +1,11 @@
 var suffragette;
+var buddyboy;
+var counter=0;
+var sum=0;
+var sumtext;
 window.onload = function() {
     var buddy = document.querySelector("body");
+    buddyboy=buddy;
     buddy.appendChild(createhead());
     var dims=createDimensions();
     buddy.appendChild(dims);
@@ -54,7 +59,7 @@ function createBooks(bks)
         othdiv.appendChild(hhh);
 
         hhh = document.createElement("h4");
-        hhh.textContent = bks[book].price + "$";
+        hhh.textContent = bks[book].price + " $";
         othdiv.appendChild(hhh);
         
         var foot = document.createElement("div");
@@ -99,18 +104,117 @@ function createDimensions()
 
     catalog = document.createElement("div");
     catalog.setAttribute("class","orders");
+    var headiv = document.createElement("div");
+    headiv.setAttribute("class","shelfer");
     hh= document.createElement("h1");
     hh.textContent="Order Books";
     catalog.appendChild(hh);
+    catalog.appendChild(headiv);
+
+    var confirmation = document.createElement("input");
+    confirmation.setAttribute("value","Confirm");
+    confirmation.setAttribute("type","button");
+    confirmation.setAttribute("class","confirmo");
+    confirmation.setAttribute("onclick",`onConfirmClicked()`);
+
+    var summo = document.createElement("h2");
+    summo.textContent=sum+" $";
+    sumtext=summo;
+    catalog.appendChild(summo);
+    catalog.appendChild(confirmation);
     placeholder.appendChild(catalog);
     return placeholder;
 }
 function onshowClicked(dsd)
 {
-console.log('hahahahaha',dsd,suffragette);
+    var ggg = document.createElement("div");
+    ggg.setAttribute("class","popuppy")
+    var rer = dsd.split("_");
+    var ddd = document.createElement("div");
+    ddd.setAttribute("class","popup");
+    ddd.textContent= suffragette[parseInt(rer[1])].description + "\n";
+
+    var hhh = document.createElement("input");    
+    hhh.setAttribute("value","Close");
+    hhh.setAttribute("type","button");
+    hhh.setAttribute("class","closure");
+    hhh.setAttribute("onclick",`closepopup()`);
+    ddd.appendChild(hhh);
+    ggg.appendChild(ddd);
+    buddyboy.appendChild(ggg);
+}
+function closepopup()
+{
+    var edr = document.querySelector(".popuppy");
+    edr.remove();
 }
 
 function onAddToBagClicked(dsd)
 {
+    var headiv= document.querySelector(".shelfer");
     console.log('hahahahaha',dsd,suffragette);
+    var bag = document.querySelector(".orders");
+    var rer = dsd.split("_");
+    var magic = rer[1];
+    
+
+    var cdr=document.createElement("div");
+    cdr.setAttribute("class","booker");
+    cdr.setAttribute("id",`beben_${counter}`)
+    var imges=document.createElement("img");
+    imges.setAttribute("src",suffragette[magic].imageLink);
+    imges.setAttribute("width","150");
+    imges.setAttribute("height","250");
+    cdr.appendChild(imges);
+
+    var othdiv=document.createElement("div");
+    othdiv.setAttribute("class","infer");
+    var hhh = document.createElement("h3");
+    hhh.textContent = suffragette[magic].author;
+    othdiv.appendChild(hhh);
+    hhh = document.createElement("h2");
+    hhh.textContent =suffragette[magic].title;
+    othdiv.appendChild(hhh);
+
+    hhh = document.createElement("h4");
+    hhh.setAttribute("class","priceless")
+    hhh.textContent = suffragette[magic].price + "$";
+    othdiv.appendChild(hhh);
+    
+    hhh = document.createElement("input");    
+    hhh.setAttribute("value","Remove");
+    hhh.setAttribute("type","button");
+    hhh.setAttribute("class","showmore");
+    hhh.setAttribute("id",`bebe_${counter}`);
+    hhh.setAttribute("onclick",`onrmClicked(id)`);
+    
+    othdiv.appendChild(hhh);
+    cdr.appendChild(othdiv);
+    headiv.appendChild(cdr);
+    updateSum();
+    counter++;
+}
+function onrmClicked(sd)
+{
+    console.log(sd);
+    var edr = document.querySelector("#beben_" + sd.split("_")[1]);
+    edr.remove();
+    updateSum();
+    console.log("da");
+}
+function updateSum()
+{
+    
+    var prices = document.querySelectorAll(".priceless");
+    console.log(prices);
+    var summa = 0;
+    for (var edr in prices)
+    {
+        var tmp = prices[edr].textContent;
+        console.log(tmp);
+
+        // summa+=parseInt(tmp.replace("$",""));
+    }
+    sumtext.textContent(summa+" $");
+
 }

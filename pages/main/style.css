@@ -39,3 +39,23 @@
 .addbag{
     margin-left: 1em;
 }
+.popuppy{
+    width:100%;
+    min-height:100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+.popup{
+    margin:40px auto 0px auto;
+    width:300px;
+    height: 200px;
+    padding:10px;
+    background-color: #c5c5c5;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+}
+.confirmo{
+    margin:3em;
+}
