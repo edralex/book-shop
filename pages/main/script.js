@@ -43,7 +43,19 @@ function createBooks(bks)
     for (var book in bks)
     {
         var cdr=document.createElement("div");
+        cdr.setAttribute("draggable","true");
+        cdr.setAttribute("ondragstart","dragstart_handler(event)");
         cdr.setAttribute("class","book");
+        cdr.setAttribute("id",`bbk_${i}`);
+
+        window.addEventListener("DOMContentLoaded", () => {
+            // Get the element by id
+            const element = document.getElementById(`bbk_${i}`);
+            // Add the ondragstart event listener
+            element.addEventListener("dragstart", dragstart_handler);
+          })
+
+
         var imges=document.createElement("img");
         imges.setAttribute("src",bks[book].imageLink);
         imges.setAttribute("width","150");
@@ -110,6 +122,8 @@ function createDimensions()
     hh.textContent="Order Books";
     catalog.appendChild(hh);
     catalog.appendChild(headiv);
+    catalog.setAttribute("ondrop","drop_handler(event)");
+    catalog.setAttribute("ondragover","dragover_handler(event)");
 
     var confirmation = document.createElement("input");
     confirmation.setAttribute("value","Confirm");
@@ -204,18 +218,33 @@ function onrmClicked(sd)
 }
 function updateSum()
 {
-    
     var prices = document.querySelectorAll(".priceless");
-    console.log(prices);
     var summa = 0;
     for (var edr in prices)
     {
         var tmp = prices[edr].textContent;
-        console.log(tmp);
         if (tmp==undefined)
          continue;
         summa+=parseInt(tmp.replace("$",""));
     }
     sumtext.textContent = summa+" $";
-
 }
+
+
+function dragstart_handler(ev) {
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("application/my-app", ev.target.id);
+    ev.dataTransfer.dropEffect = "copy";
+  }
+
+  function dragover_handler(ev) {
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
+  }
+  function drop_handler(ev) {
+    ev.preventDefault();
+    // Get the id of the target and add the moved element to the target's DOM
+    onAddToBagClicked(ev.dataTransfer.getData("application/my-app"));
+    // const data = ev.dataTransfer.getData("text/plain");
+    // ev.target.appendChild(document.getElementById(data));
+  }
