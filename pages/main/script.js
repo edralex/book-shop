@@ -233,6 +233,40 @@ function updateSum()
     sumtext.textContent = summa+" $";
 }
 
+function onConfirmClicked(){
+    var ggg = document.createElement("div");
+    ggg.setAttribute("class","popuppy");
+    var ddd = document.createElement("div");
+    ddd.setAttribute("class","popup");
+    ddd.textContent= "here will be the form";
+
+    var hhh = document.createElement("input");    
+    hhh.setAttribute("value","Close");
+    hhh.setAttribute("type","button");
+    hhh.setAttribute("class","closure");
+    hhh.setAttribute("onclick",`closepopup()`);
+    ddd.appendChild(hhh);
+    ggg.appendChild(ddd);
+    buddyboy.appendChild(ggg);
+}
+
+function createForm(){
+    var forme = document.createElement("form");
+    forme.setAttribute("id","formalism");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function dragstart_handler(ev) {
 
@@ -248,5 +282,4 @@ function dragstart_handler(ev) {
     ev.preventDefault();
 
     onAddToBagClicked(ev.dataTransfer.getData("application/my-app"));
-
   }
