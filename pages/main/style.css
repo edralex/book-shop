@@ -1,1 +1,41 @@
 @import url(../../assets/styles/normalize.css);
+.headcontain h1{
+    color: goldenrod;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+    margin: 40px
+}
+.headcontain {
+    display: flex;
+ 
+}
+.body{
+    width: auto;
+    background-color: antiquewhite;
+}
+.book{
+    display: flex;
+    margin-top: 2em;
+}
+.catalog{
+    width:30%''
+}
+.placeholder{
+    display:flex;
+}
+.inf h2{
+    overflow-wrap: break-word;
+}
+.inf{
+    margin-left: 1em;
+}
+.catalog{
+    width:40%;
+}
+.orders{
+    width:40%;
+    padding-left: 5em;
+}
+.addbag{
+    margin-left: 1em;
+}
